@@ -11,7 +11,6 @@ The **`FisheyeUndistort`** class in this repository is designed to undistort ima
 
 ## Features
 * Calculation of camera parameters (**`K`** and **`D`**) using chessboard calibration images.
-* Handling of images with different aspect ratios compared to the calibration images.
 * Easy-to-use interface with example usage.
 ## Requirements
 * Python 3.x
