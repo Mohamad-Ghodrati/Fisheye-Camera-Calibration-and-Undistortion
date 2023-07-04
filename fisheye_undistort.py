@@ -4,7 +4,7 @@ import os
 import glob
 
 
-class FisheyeUndistort:
+class FisheyeCalibrate:
     """
     A class that uses cv2.fisheye to find the K and D parameters of fisheye cameras using chessboard images.
 
@@ -14,7 +14,7 @@ class FisheyeUndistort:
                    Please refer to the docstring of the undistort method for further explanation.
 
     Example:
-        calibrator = FisheyeUndistort(checkerboard_size=(8, 6), images_dir='path/to/images', image_extension='jpg')
+        calibrator = FisheyeCalibrate(checkerboard_size=(8, 6), images_dir='path/to/images', image_extension='jpg')
 
         # Calculate camera parameters
         K, D = calibrator.calculate_parameters()
@@ -23,7 +23,7 @@ class FisheyeUndistort:
         undistorted_img = calibrator.undistort(image)
     """
     def __init__(self, checkerboard_size: tuple, images_dir: str, image_extension='jpg') -> None:
-        """Initialize the FisheyeUndistort object.
+        """Initialize the FisheyeCalibrate object.
 
         Args:
             checkerboard_size (tuple, list): Size of the checkerboard used in the calibration images.
@@ -53,7 +53,7 @@ class FisheyeUndistort:
                 ValueError: If the images do not have the same size or no usable images are found.
 
             Example:
-                calibrator = CameraCalibrator(checkerboard=(7, 7), images_path='/path_to_images')
+                calibrator = FisheyeCalibrate(checkerboard=(7, 7), images_path='/path_to_images')
                 K, D = calibrator.calculate_parameters()
             """
         objp = np.zeros((1, self.checkerboard[0] * self.checkerboard[1], 3), np.float32)
@@ -143,7 +143,7 @@ class FisheyeUndistort:
             dim2 = dim1
         if not dim3:
             dim3 = dim1
-
+        
         scaled_K = self.K * dim1[0] / self.DIM[0]
         scaled_K[2][2] = 1.0
 
@@ -160,10 +160,11 @@ class FisheyeUndistort:
 
 if __name__ == '__main__':
     images_directory = r''  # NOTE use your own directory.
-    fisheye_und = FisheyeUndistort((12, 8), images_directory, 'jpg')
-    fisheye_und.calculate_parameters()
+    calibrator = FisheyeCalibrate((12, 8), images_directory, 'jpg')
+    calibrator.calculate_parameters()
+    print(f'K: \n{fisheye_und.K} \nD:\n{fisheye_und.D}')
     image_path = r''  # NOTE use your own image path to test the resualt.
     image = cv2.imread(image_path)
-    image_undistorted = fisheye_und.undistort(image)
+    image_undistorted = fisheye_und.undistort(image, balance=1)
     cv2.imshow('undistorted image', image_undistorted)
     cv2.waitKey()
