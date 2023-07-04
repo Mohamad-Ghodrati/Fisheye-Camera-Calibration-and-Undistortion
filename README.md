@@ -25,23 +25,27 @@ import cv2
 from fisheye_calibrate import FisheyeCalibrate
 from fisheye_undistort import FisheyeUndistort
 
-calibrator = FisheyeCalibrate(checkerboard_size=(8, 6), images_dir='path/to/images', image_extension='jpg')
+calibrator = FisheyeCalibrate(checkerboard_size=(12, 8), images_dir=r'', image_extension='jpg')
 
 # Calculate camera parameters
 K, D = calibrator.calculate_parameters()
 
  
 calibration_image_size = calibrator.DIM
-input_size = (1280, 960)  # image.shape[:2][::-1]
+
+image = cv2.imread(r'')
+input_size = image.shape[:2][::-1]
+
 balance = 0.5
-device = 'cuda'
-fisheye_undistorter = FisheyeCalibrate(intrinsic_matrix, distortion_coeffs, calibration_image_size, input_size, balance, device)
+device = 'cpu'
+fisheye_undistorter = FisheyeUndistort(K, D, calibration_image_size, input_size, balance, device)
 
 # Undistort an image
-image = cv2.imread('image.jpg')
 undistorted_image = fisheye_undistorter.undistort(image)
 
-cv2.imshow('Undistorted Image', undistorted_img)
+
+
+cv2.imshow('Undistorted Image', undistorted_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
