@@ -2,7 +2,7 @@
 This repository is based on a medium article named [Calibrate fisheye lens using OpenCV — part 1 & 2](https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-333b05afa0b0) by [Kenneth Jiang](https://www.linkedin.com/in/kennethjiang/).
 
 This repository provides a Python implementation of fisheye camera calibration and image undistortion using the OpenCV library. 
-The FisheyeUndistort class in this repository utilizes OpenCV's **`cv2.fisheye`** module to find the camera parameters (**`K`** and **`D`**) for fisheye cameras using chessboard calibration images. It also provides a method to undistort input images using the calculated camera parameters.
+The **`FisheyeUndistort`** class in this repository utilizes OpenCV's **`cv2.fisheye`** module to find the camera parameters (**`K`** and **`D`**) for fisheye cameras using chessboard calibration images. It also provides a method to undistort input images using the calculated camera parameters.
 ## Features
 * Calculation of camera parameters (**`K`** and **`D`**) using chessboard calibration images.
 * Handling of images with different aspect ratios compared to the calibration images.
