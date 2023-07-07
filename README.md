@@ -24,7 +24,7 @@ import cv2
 from fisheye_calibrate import FisheyeCalibrate
 from fisheye_undistort import FisheyeUndistort
 
-calibrator = FisheyeCalibrate(checkerboard_size=(12, 8), images_dir=r'', image_extension='jpg')
+calibrator = FisheyeCalibrate(checkerboard_size=(12, 8), images_dir=r'', image_extension='jpg')  # use your image_dir
 
 # Calculate camera parameters
 K, D = calibrator.calculate_parameters()
@@ -32,7 +32,7 @@ K, D = calibrator.calculate_parameters()
  
 calibration_image_size = calibrator.DIM
 
-image = cv2.imread(r'')
+image = cv2.imread(r'')  # use your image path
 input_size = image.shape[:2][::-1]
 
 balance = 0.5
