@@ -162,9 +162,9 @@ if __name__ == '__main__':
     images_directory = r''  # NOTE use your own directory.
     calibrator = FisheyeCalibrate((12, 8), images_directory, 'jpg')
     calibrator.calculate_parameters()
-    print(f'K: \n{fisheye_und.K} \nD:\n{fisheye_und.D}')
+    print(f'K: \n{calibrator.K} \nD:\n{calibrator.D}')
     image_path = r''  # NOTE use your own image path to test the resualt.
     image = cv2.imread(image_path)
-    image_undistorted = fisheye_und.undistort(image, balance=1)
+    image_undistorted = calibrator.undistort(image, balance=1)
     cv2.imshow('undistorted image', image_undistorted)
     cv2.waitKey()
