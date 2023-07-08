@@ -84,7 +84,7 @@ class FisheyeUndistort:
                                                                        np.eye(3),
                                                                        balance=balance)
 
-        map1, map2 = cv2.fisheye.initUndistortRectifyMap(scaled_K, self.D, np.eye(3), new_K, dim3, cv2.CV_16SC2)
+        map1, map2 = cv2.fisheye.initUndistortRectifyMap(scaled_K, self.D, np.eye(3), new_K, dim3, cv2.CV_32F)
         if self.device == 'cuda':
             map1, map2 = list(map(cv2.cuda_GpuMat, (map1, map2)))
 
