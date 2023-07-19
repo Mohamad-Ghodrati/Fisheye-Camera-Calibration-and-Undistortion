@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 import glob
 
 class FisheyeCalibrate:
@@ -29,7 +30,7 @@ class FisheyeCalibrate:
             image_extension (str): Extension of the calibration images. Defaults to 'jpg'.
         """
         self.checkerboard = checkerboard_size
-        self.images_path = images_dir + f'\\*.{image_extension}'
+        self.images_path = images_dir + os.path.sep + f'*.{image_extension}'
         self.K = np.zeros((3, 3))
         self.D = np.zeros((4, 1))
         self.DIM = None
