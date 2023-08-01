@@ -9,9 +9,6 @@ The **`FisheyeUndistort`** class in this repository is designed to undistort ima
 
 
 
-## Features
-* Calculation of camera parameters (**`K`** and **`D`**) using chessboard calibration images.
-* Easy-to-use interface with example usage.
 ## Requirements
 * Python 3.x
 * OpenCV (cv2) (**version 3.0 or higher**)
