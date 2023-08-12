@@ -14,8 +14,8 @@ The **`FisheyeUndistort`** class in this repository is designed to undistort ima
 * OpenCV (cv2) (**version 3.0 or higher**)
 * Numpy
 ## Usage
-Here is an example of how to use the **`FisheyeCalibrate`** and **`FisheyeUndistort`** class:
-**Note:** Please check out each file.
+Here is an example of how to use the **`FisheyeCalibrate`** and **`FisheyeUndistort`** class:  
+**Note:** *Please check out both the **fisheye_undistort.py** and **fisheye_calibrate.py**.*
 
 ```python
 import cv2
