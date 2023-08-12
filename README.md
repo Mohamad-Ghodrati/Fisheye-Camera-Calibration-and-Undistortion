@@ -15,31 +15,32 @@ The **`FisheyeUndistort`** class in this repository is designed to undistort ima
 * Numpy
 ## Usage
 Here is an example of how to use the **`FisheyeCalibrate`** and **`FisheyeUndistort`** class:
+**Note:** Please check out each file.
 
 ```python
 import cv2
 from fisheye_calibrate import FisheyeCalibrate
 from fisheye_undistort import FisheyeUndistort
 
-calibrator = FisheyeCalibrate(checkerboard_size=(12, 8), images_dir=r'', image_extension='jpg')  # use your image_dir
+calibrator = FisheyeCalibrate(checkerboard_size=(12, 8), images_dir=r'', image_extension='jpg')  # TODO use your image_dir and checkerboard size
 
 # Calculate camera parameters
 K, D = calibrator.calculate_parameters()
 
- 
-calibration_image_size = calibrator.DIM
+image = cv2.imread(r'')  # TODO use your image path
 
-image = cv2.imread(r'')  # use your image path
-input_size = image.shape[:2][::-1]
+# The next method is a simple way to see how well the calibrator did the calibration. 
+# However, it's important to note that this method is much slower and less efficient when compared to using the undistort class.
+undistorted_image = calibrator.undistort(image, balance=1)  # slow method.
 
+calibration_image_size = calibrator.DIM  # or set it directly
+input_size = image.shape[:2][::-1]  # (width, height) of images you're going to undistort
 balance = 0.5
-device = 'cpu'
+device = 'cpu'  
 fisheye_undistorter = FisheyeUndistort(K, D, calibration_image_size, input_size, balance, device)
 
 # Undistort an image
 undistorted_image = fisheye_undistorter.undistort(image)
-
-
 
 cv2.imshow('Undistorted Image', undistorted_image)
 cv2.waitKey(0)
